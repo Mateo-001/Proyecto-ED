@@ -18,7 +18,7 @@ public class MusicPlayer {
 			e.printStackTrace();
 		}
 	}
-	
+	//hola
 	public void play() {
 				Interfaz.pausa = false;
 		new Thread() {

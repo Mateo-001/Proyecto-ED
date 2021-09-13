@@ -24,6 +24,7 @@ public class JFPlay extends javax.swing.JFrame {
         this.jTFArtista.setEnabled(false);
         this.jTFCancion.setEnabled(false);
         this.jTFGenero.setEnabled(false);
+    
     }
 
     /**

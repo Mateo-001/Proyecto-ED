@@ -62,4 +62,8 @@ public class MusicPlayer {
     public void close(){
         player.close();
     }
+    
+    public boolean complete(){
+        return player.isComplete();
+    }
 }

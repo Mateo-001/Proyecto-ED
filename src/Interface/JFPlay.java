@@ -189,6 +189,20 @@ public class JFPlay extends javax.swing.JFrame {
 
     private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
         music.play();
+        
+        new Thread() {
+            public void run() {
+                while(true){
+                    if(music.complete()){
+                        music.close();
+                        music = new MusicPlayer(Main.lista.nextSong().getArchivo());
+                        music.play();
+                        System.out.println("test");
+                        break;
+                    }
+                }
+            }
+        }.start();
     }//GEN-LAST:event_jBPlayActionPerformed
 
     private void jBPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPausaActionPerformed

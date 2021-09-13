@@ -53,8 +53,12 @@ public class JFNuevaCancion extends javax.swing.JFrame {
         Object[] obj = new Object[6];
         
         this.carpetaLista = new File(this.carpeta);
-        this.canciones = carpetaLista.list();
         
+        this.canciones = carpetaLista.list();
+        for(int i=0; i<canciones.length; i++){
+            System.out.println(canciones[i]);
+            System.out.println("o");
+        }
         for(int i=0; i<canciones.length && canciones[i].contains(".mp3");i++){
             Song aux = new Song(carpeta+"/"+canciones[i]);
             obj[0] = i+1;

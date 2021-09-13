@@ -5,15 +5,18 @@
  */
 package Interface;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 /**
  *
  * @author Bryan
  */
 public class JFReproductor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFReproductor
-     */
     public JFReproductor() {
         initComponents();
     }
@@ -27,21 +30,78 @@ public class JFReproductor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jBPausa = new javax.swing.JButton();
+        jBAtras = new javax.swing.JButton();
+        jBSiguiente = new javax.swing.JButton();
+        jBPlay = new javax.swing.JButton();
+        jBAgregar = new javax.swing.JButton();
+        jLReproduciendo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
+
+        jBPausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pausa (1).png"))); // NOI18N
+
+        jBAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/atras.png"))); // NOI18N
+
+        jBSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/siguiente.png"))); // NOI18N
+
+        jBPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/play.png"))); // NOI18N
+
+        jBAgregar.setText("Agregar Canción");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
+
+        jLReproduciendo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/reproduciendo.gif"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(jBPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBPausa, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(218, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLReproduciendo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jBAgregar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(126, Short.MAX_VALUE)
+                .addComponent(jLReproduciendo)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBAtras)
+                    .addComponent(jBSiguiente)
+                    .addComponent(jBPlay)
+                    .addComponent(jBPausa))
+                .addGap(14, 14, 14)
+                .addComponent(jBAgregar)
+                .addGap(126, 126, 126))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,8 +136,17 @@ public class JFReproductor extends javax.swing.JFrame {
                 new JFReproductor().setVisible(true);
             }
         });
+
     }
 
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAgregar;
+    private javax.swing.JButton jBAtras;
+    private javax.swing.JButton jBPausa;
+    private javax.swing.JButton jBPlay;
+    private javax.swing.JButton jBSiguiente;
+    private javax.swing.JLabel jLReproduciendo;
     // End of variables declaration//GEN-END:variables
 }

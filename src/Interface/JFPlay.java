@@ -24,6 +24,7 @@ public class JFPlay extends javax.swing.JFrame {
         this.jTFArtista.setEnabled(false);
         this.jTFCancion.setEnabled(false);
         this.jTFGenero.setEnabled(false);
+    
     }
 
     /**
@@ -186,6 +187,7 @@ public class JFPlay extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed

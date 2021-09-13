@@ -60,19 +60,17 @@ public class JFNuevaCancion extends javax.swing.JFrame {
             System.out.println("o");
         }
         for (int i = 0; i < canciones.length && canciones[i].contains(".mp3"); i++) {
-            //Song aux = new Song(carpeta + "/" + canciones[i]);
-            try {
-                Song aux = new Song(carpeta + "/" + canciones[i]);
-                obj[0] = i + 1;
-                obj[1] = aux.getNombre().replace(".mp3", "");
-                obj[2] = aux.getAutor();
-                obj[3] = aux.getAlbum();
-                obj[4] = aux.getGenero();
-                obj[5] = aux.getAnio();
-                modelo.addRow(obj);
-            } catch (Exception e) {
-                System.out.println("hola");
-            }
+            Song aux = new Song(carpeta + "/" + canciones[i]);
+            obj[0] = i + 1;
+            obj[1] = aux.getNombre().replace(".mp3", "");
+            obj[2] = aux.getAutor();
+            obj[3] = aux.getAlbum();
+            obj[4] = aux.getGenero();
+            obj[5] = aux.getAnio();
+            modelo.addRow(obj);
+
+            System.out.println("hola");
+
         }
         this.jTCanciones.setModel(modelo);
     }

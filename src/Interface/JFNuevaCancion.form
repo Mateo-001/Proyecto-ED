@@ -28,12 +28,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="536" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jCBBuscar" min="-2" pref="221" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Component id="jBInsertar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="jBRegresar" pref="111" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -70,6 +72,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jCBBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBInsertar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBRegresar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="196" max="-2" attributes="0"/>
@@ -138,6 +141,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFDireccion">
+    </Component>
+    <Component class="javax.swing.JButton" name="jBRegresar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Regresar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBRegresarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

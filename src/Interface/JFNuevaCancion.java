@@ -6,6 +6,7 @@
 package Interface;
 
 
+import static Interface.JFPlay.music;
 import Source.*;
 import java.io.File;
 import java.util.Arrays;
@@ -94,6 +95,7 @@ public class JFNuevaCancion extends javax.swing.JFrame {
         jBDireccion = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTFDireccion = new javax.swing.JTextField();
+        jBRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +130,13 @@ public class JFNuevaCancion extends javax.swing.JFrame {
 
         jLabel2.setText("Escoja la carpeta de su biblioteca:");
 
+        jBRegresar.setText("Regresar");
+        jBRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,12 +146,14 @@ public class JFNuevaCancion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(57, 57, 57)
                                 .addComponent(jBInsertar)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(26, 26, 26)
+                                .addComponent(jBRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                .addGap(14, 14, 14)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -168,7 +179,8 @@ public class JFNuevaCancion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBInsertar))
+                    .addComponent(jBInsertar)
+                    .addComponent(jBRegresar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -186,7 +198,12 @@ public class JFNuevaCancion extends javax.swing.JFrame {
     private void jBInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertarActionPerformed
         Song song = new Song(carpeta+"/"+jCBBuscar.getSelectedItem().toString()+".mp3");
         Main.lista.insertSong(song);
+        music = new MusicPlayer(Main.lista.head.song.getArchivo());
     }//GEN-LAST:event_jBInsertarActionPerformed
+
+    private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jBRegresarActionPerformed
 
     /**
          * @param args the command line arguments
@@ -226,6 +243,7 @@ public class JFNuevaCancion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBDireccion;
     private javax.swing.JButton jBInsertar;
+    private javax.swing.JButton jBRegresar;
     private javax.swing.JComboBox<String> jCBBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -1,9 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Interface;
+
+import Source.Main;
+import Source.MusicPlayer;
+import Source.Song;
 
 /**
  *
@@ -11,9 +11,9 @@ package Interface;
  */
 public class JFPlay extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFPlay
-     */
+    public static boolean pausa = true;
+    Song song;
+    public static MusicPlayer music;
     public JFPlay() {
         initComponents();
         this.jTFAlbum.setEditable(false);
@@ -55,13 +55,29 @@ public class JFPlay extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reproductor de Música");
 
-        jBAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/atras.png"))); // NOI18N
+        jBAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAtrasActionPerformed(evt);
+            }
+        });
 
-        jBSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/siguiente.png"))); // NOI18N
+        jBSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSiguienteActionPerformed(evt);
+            }
+        });
 
-        jBPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/play.png"))); // NOI18N
+        jBPlay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPlayActionPerformed(evt);
+            }
+        });
 
-        jBPausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pausa.png"))); // NOI18N
+        jBPausa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPausaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Canción:");
 
@@ -160,7 +176,7 @@ public class JFPlay extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jBPlay)
                                 .addComponent(jBAtras)))
-                        .addContainerGap(42, Short.MAX_VALUE))
+                        .addContainerGap(74, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addComponent(jBAgregar)
@@ -176,6 +192,26 @@ public class JFPlay extends javax.swing.JFrame {
         JFNuevaCancion jFNueva = new JFNuevaCancion();
         jFNueva.setVisible(true);
     }//GEN-LAST:event_jBAgregarActionPerformed
+
+    private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
+        music.play();
+    }//GEN-LAST:event_jBPlayActionPerformed
+
+    private void jBPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPausaActionPerformed
+        music.pause();
+    }//GEN-LAST:event_jBPausaActionPerformed
+
+    private void jBSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSiguienteActionPerformed
+        music.close();
+        music = new MusicPlayer(Main.lista.nextSong().getArchivo());
+        music.play();
+    }//GEN-LAST:event_jBSiguienteActionPerformed
+
+    private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
+        music.close();
+        music = new MusicPlayer(Main.lista.previousSong().getArchivo());
+        music.play();
+    }//GEN-LAST:event_jBAtrasActionPerformed
 
     /**
      * @param args the command line arguments

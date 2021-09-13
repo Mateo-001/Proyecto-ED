@@ -3,11 +3,13 @@ package Source;
 public class ListaCanciones {
 
     public Nodo head;
+    public Nodo pointer;
 
     public ListaCanciones() {
         head = new Nodo();
         head.next = head;
         head.previous = head;
+        pointer = head;
     }
 
     public void insertSong(Song song) {
@@ -43,7 +45,19 @@ public class ListaCanciones {
             recorre.next.previous = recorre.previous;
         }
     }
-
+    
+    public Song nextSong(){
+        //Nodo recorre = head.next;
+        pointer = pointer.next;
+        return pointer.song;
+    }
+    
+    public Song previousSong(){
+        //Nodo recorre = head.previous;
+        pointer = pointer.previous;
+        return pointer.song;
+    }
+    
     public int listSize() {
         Nodo recorre = head;
         int i = 0;

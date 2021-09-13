@@ -1,5 +1,6 @@
 package Source;
 
+import Interface.JFPlay;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -57,5 +58,8 @@ public class MusicPlayer {
     public void pause() {
         JFPlay.pausa = true;
     }
-
+    
+    public void close(){
+        player.close();
+    }
 }

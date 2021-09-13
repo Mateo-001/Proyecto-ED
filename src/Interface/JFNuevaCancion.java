@@ -6,8 +6,9 @@
 package Interface;
 
 
-import Source.Song;
+import Source.*;
 import java.io.File;
+import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -19,7 +20,8 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public class JFNuevaCancion extends javax.swing.JFrame {
 
     String carpeta;
-
+    File carpetaLista;
+    String[] canciones;
     public JFNuevaCancion() {
         initComponents();
 
@@ -31,6 +33,7 @@ public class JFNuevaCancion extends javax.swing.JFrame {
     public String getCarpeta() {
         String direccion = "";
         JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int result = fc.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             try {
@@ -39,21 +42,22 @@ public class JFNuevaCancion extends javax.swing.JFrame {
                 System.out.println("Error");
             }
         }
+        System.out.println(direccion);
         return direccion;
     }
 
     public void getTabla() {
-        String col[] = {"Nº", "Nombre", "Autor", "'Álbum", "Género", "Año"};
+        String col[] = {"Nº", "Nombre", "Autor", "Álbum", "Género", "Año"};
         DefaultTableModel modelo = new DefaultTableModel(col, 0);
         Object[] obj = new Object[6];
         
-        File carpetaLista = new File(this.carpeta);
-        String[] canciones = carpetaLista.list();
+        this.carpetaLista = new File(this.carpeta);
+        this.canciones = carpetaLista.list();
         
-        for(int i=0; i<canciones.length;i++){
+        for(int i=0; i<canciones.length-1;i++){
             Song aux = new Song(carpeta+"/"+canciones[i]);
-            obj[0] = i;
-            obj[1] = aux.getNombre();
+            obj[0] = i+1;
+            obj[1] = aux.getNombre().replace(".mp3", "");
             obj[2] = aux.getAutor();
             obj[3] = aux.getAlbum();
             obj[4] = aux.getGenero();
@@ -66,8 +70,8 @@ public class JFNuevaCancion extends javax.swing.JFrame {
     public void cargarCanciones(){
         File carpetaLista = new File(this.carpeta);
         String[] canciones = carpetaLista.list();
-        for(int i=0; i<canciones.length; i++){
-            this.jCBBuscar.addItem(canciones[i]);
+        for(int i=0; i<canciones.length-1; i++){
+            this.jCBBuscar.addItem(canciones[i].replace(".mp3", ""));
         }
     }
         
@@ -180,7 +184,8 @@ public class JFNuevaCancion extends javax.swing.JFrame {
     }//GEN-LAST:event_jBDireccionActionPerformed
 
     private void jBInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertarActionPerformed
-        
+        Song song = new Song(carpeta+"/"+jCBBuscar.getSelectedItem().toString()+".mp3");
+        Main.lista.insertSong(song);
     }//GEN-LAST:event_jBInsertarActionPerformed
 
     /**

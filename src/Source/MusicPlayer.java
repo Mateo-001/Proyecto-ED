@@ -16,7 +16,7 @@ import javazoom.jl.player.Player;
 public class MusicPlayer {
 
     Player player;
-
+    
     public MusicPlayer(File file) {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);

@@ -6,6 +6,10 @@ import Source.MusicPlayer;
 import Source.Song;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -203,6 +207,13 @@ public class JFPlay extends javax.swing.JFrame {
                 }
             }
         }.start();
+        try {
+            music.getDurationWithMp3Spi(Main.lista.nextSong().getArchivo());
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(JFPlay.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(JFPlay.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBPlayActionPerformed
 
     private void jBPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPausaActionPerformed

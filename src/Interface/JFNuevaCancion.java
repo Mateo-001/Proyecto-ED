@@ -10,6 +10,7 @@ import Source.*;
 import java.io.File;
 import java.util.Arrays;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -25,7 +26,7 @@ public class JFNuevaCancion extends javax.swing.JFrame {
 
     public JFNuevaCancion() {
         initComponents();
-
+        this.jTFDireccion.setEditable(false);
         AutoCompleteDecorator.decorate(jCBBuscar);
         //getTabla();
         //cargarCanciones();
@@ -57,7 +58,6 @@ public class JFNuevaCancion extends javax.swing.JFrame {
         this.canciones = carpetaLista.list();
         for (int i = 0; i < canciones.length; i++) {
             System.out.println(canciones[i]);
-            System.out.println("o");
         }
         for (int i = 0; i < canciones.length && canciones[i].contains(".mp3"); i++) {
             Song aux = new Song(carpeta + "/" + canciones[i]);
@@ -68,9 +68,6 @@ public class JFNuevaCancion extends javax.swing.JFrame {
             obj[4] = aux.getGenero();
             obj[5] = aux.getAnio();
             modelo.addRow(obj);
-
-            System.out.println("hola");
-
         }
         this.jTCanciones.setModel(modelo);
     }
@@ -199,12 +196,18 @@ public class JFNuevaCancion extends javax.swing.JFrame {
         carpeta = getCarpeta();
         getTabla();
         cargarCanciones();
+        this.jTFDireccion.setText(carpeta);
     }//GEN-LAST:event_jBDireccionActionPerformed
 
     private void jBInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertarActionPerformed
-        Song song = new Song(carpeta + "/" + jCBBuscar.getSelectedItem().toString() + ".mp3");
-        Main.lista.insertSong(song);
-        music = new MusicPlayer(Main.lista.head.song.getArchivo());
+        try {
+            Song song = new Song(carpeta + "/" + jCBBuscar.getSelectedItem().toString() + ".mp3");
+            Main.lista.insertSong(song);
+            music = new MusicPlayer(Main.lista.head.song.getArchivo());
+            JOptionPane.showMessageDialog(null, Main.lista.head.song.getNombre() + " agregada correctamente", "Insertar nueva canción", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "Ocurrió un error al insertar la canción", "Insertar nueva canción", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jBInsertarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed

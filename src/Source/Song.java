@@ -3,6 +3,7 @@ package Source;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -26,7 +27,7 @@ public class Song {
     String genero;
     String anio;
     
-    BufferedImage img;
+    Image img;
 
     public Song(String ubicacion) {
         this.archivo = new File(ubicacion);
@@ -80,7 +81,7 @@ public class Song {
         return anio;
     }
 
-    public BufferedImage getImg() {
+    public Image getImg() {
         return img;
     }
     

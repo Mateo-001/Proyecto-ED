@@ -18,14 +18,14 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 public class JFNuevaCancion extends javax.swing.JFrame {
 
-    String carpeta = getCarpeta();
+    String carpeta;
 
     public JFNuevaCancion() {
         initComponents();
 
         AutoCompleteDecorator.decorate(jCBBuscar);
-        getTabla();
-        cargarCanciones();
+        //getTabla();
+        //cargarCanciones();
     }
 
     public String getCarpeta() {
@@ -88,6 +88,8 @@ public class JFNuevaCancion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jBInsertar = new javax.swing.JButton();
         jBDireccion = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTFDireccion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,8 +109,20 @@ public class JFNuevaCancion extends javax.swing.JFrame {
         jLabel1.setText("Busque la canción que desea insertar:");
 
         jBInsertar.setText("Insertar canción");
+        jBInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBInsertarActionPerformed(evt);
+            }
+        });
 
         jBDireccion.setText("···");
+        jBDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDireccionActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Escoja la carpeta de su biblioteca:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,29 +141,47 @@ public class JFNuevaCancion extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBDireccion)
-                        .addGap(67, 67, 67))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBDireccion)
+                                .addGap(34, 34, 34)
+                                .addComponent(jTFDireccion))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jBDireccion))
+                    .addComponent(jBDireccion)
+                    .addComponent(jTFDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBInsertar))
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDireccionActionPerformed
+        carpeta = getCarpeta();
+        getTabla();
+        cargarCanciones();
+    }//GEN-LAST:event_jBDireccionActionPerformed
+
+    private void jBInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertarActionPerformed
+        
+    }//GEN-LAST:event_jBInsertarActionPerformed
 
     /**
          * @param args the command line arguments
@@ -191,7 +223,9 @@ public class JFNuevaCancion extends javax.swing.JFrame {
     private javax.swing.JButton jBInsertar;
     private javax.swing.JComboBox<String> jCBBuscar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTCanciones;
+    private javax.swing.JTextField jTFDireccion;
     // End of variables declaration//GEN-END:variables
 }

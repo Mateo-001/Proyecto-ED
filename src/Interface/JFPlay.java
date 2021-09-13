@@ -55,15 +55,13 @@ public class JFPlay extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reproductor de Música");
 
-        jBAtras.setIcon(new javax.swing.ImageIcon("C:\\Users\\mate_\\Dropbox\\My PC (LAPTOP-0LLQBB28)\\Downloads\\atras.png")); // NOI18N
+        jBAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/atras.png"))); // NOI18N
 
-        jBSiguiente.setIcon(new javax.swing.ImageIcon("C:\\Users\\mate_\\Dropbox\\My PC (LAPTOP-0LLQBB28)\\Downloads\\siguiente.png")); // NOI18N
+        jBSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/siguiente.png"))); // NOI18N
 
-        jBPlay.setIcon(new javax.swing.ImageIcon("C:\\Users\\mate_\\Dropbox\\My PC (LAPTOP-0LLQBB28)\\Downloads\\play.png")); // NOI18N
+        jBPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/play.png"))); // NOI18N
 
-        jBPausa.setIcon(new javax.swing.ImageIcon("C:\\Users\\mate_\\Dropbox\\My PC (LAPTOP-0LLQBB28)\\Downloads\\pausa.png")); // NOI18N
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\mate_\\Dropbox\\My PC (LAPTOP-0LLQBB28)\\Downloads\\musica2.gif")); // NOI18N
+        jBPausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pausa.png"))); // NOI18N
 
         jLabel2.setText("Canción:");
 
@@ -130,7 +128,7 @@ public class JFPlay extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -162,9 +160,9 @@ public class JFPlay extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jBPlay)
                                 .addComponent(jBAtras)))
-                        .addContainerGap(44, Short.MAX_VALUE))
+                        .addContainerGap(42, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addComponent(jBAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBEliminar)

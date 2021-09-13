@@ -74,6 +74,11 @@ public class JFPlay extends javax.swing.JFrame {
         jLabel5.setText("Género:");
 
         jBAgregar.setText("Agregar Canción");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setText("Eliminar Canción");
 
@@ -168,6 +173,11 @@ public class JFPlay extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        JFNuevaCancion jFNueva = new JFNuevaCancion();
+        jFNueva.setVisible(true);
+    }//GEN-LAST:event_jBAgregarActionPerformed
 
     /**
      * @param args the command line arguments

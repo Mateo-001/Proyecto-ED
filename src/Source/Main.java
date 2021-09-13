@@ -1,17 +1,14 @@
 package Source;
 
+import Interface.JFPlay;
 
-/**
- *
- * @author Bryan
- */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
+    static ListaCanciones lista = new ListaCanciones();
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        JFPlay jFPlay = new JFPlay();
+        jFPlay.setVisible(true);
     }
     
 }

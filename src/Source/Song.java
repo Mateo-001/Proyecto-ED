@@ -51,4 +51,38 @@ public class Song {
             Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public File getArchivo() {
+        return archivo;
+    }
+
+    public Mp3File getSong() {
+        return song;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public String getAnio() {
+        return anio;
+    }
+
+    public BufferedImage getImg() {
+        return img;
+    }
+    
+    
 }

@@ -31,7 +31,7 @@
                   <Component id="jBAgregar" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -64,6 +64,7 @@
                           <Component id="jTFGenero" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="jPBProgreso" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
           </Group>
@@ -105,10 +106,12 @@
                               <Component id="jBAtras" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="79" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jPBProgreso" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                       <Component id="jBAgregar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBEliminar" min="-2" max="-2" attributes="0"/>
@@ -185,6 +188,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar Canci&#xf3;n"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jPBProgreso">
     </Component>
   </SubComponents>
 </Form>

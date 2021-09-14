@@ -23,6 +23,7 @@ import org.tritonus.share.sampled.file.TAudioFileFormat;
 public class MusicPlayer {
 
     Player player;
+    
 
     public MusicPlayer(File file) {
         try {
@@ -66,7 +67,7 @@ public class MusicPlayer {
         JFPlay.pausa = true;
     }
 
-    public void getDurationWithMp3Spi(File file) throws UnsupportedAudioFileException, IOException {
+    public int getDurationWithMp3Spi(File file) throws UnsupportedAudioFileException, IOException {
 
         AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(file);
         if (fileFormat instanceof TAudioFileFormat) {
@@ -78,10 +79,10 @@ public class MusicPlayer {
             //int min = (mili / 1000) / 60;
             //System.out.println("time = " + min + ":" + sec);
             System.out.println("time = " + mili);
+            return mili;
         } else {
             throw new UnsupportedAudioFileException();
         }
-
     }
 
     public void close() {
@@ -90,5 +91,9 @@ public class MusicPlayer {
 
     public boolean complete() {
         return player.isComplete();
+    }
+    
+    public int getPosition(){
+        return player.getPosition();
     }
 }

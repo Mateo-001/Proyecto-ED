@@ -35,6 +35,13 @@ public class JFPlay extends javax.swing.JFrame {
         this.jTFGenero.setEnabled(false);
     
     }
+    
+    public void actualizar(){
+        this.jTFCancion.setText(Main.lista.actualsong().getNombre());
+        this.jTFArtista.setText(Main.lista.actualsong().getAutor());
+        this.jTFAlbum.setText(Main.lista.actualsong().getAlbum());
+        this.jTFGenero.setText(Main.lista.actualsong().getGenero());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -203,7 +210,7 @@ public class JFPlay extends javax.swing.JFrame {
 
     private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
         music.play();
-        
+        actualizar();
         new Thread() {
             public void run() {
                 while(true){
@@ -211,6 +218,8 @@ public class JFPlay extends javax.swing.JFrame {
                         music.close();
                         music = new MusicPlayer(Main.lista.nextSong().getArchivo());
                         music.play();
+                        actualizar();
+                        
                         System.out.println("test");
                         break;
                     }
@@ -228,7 +237,7 @@ public class JFPlay extends javax.swing.JFrame {
         Thread thread1 = new Thread(){
             public void run() {
                 while(true){
-                    if(music.complete()){
+                    //if(music.complete()){
                         try {
                             jPBProgreso.setMaximum(music.getDurationWithMp3Spi(Main.lista.actualsong().getArchivo()));
                             jPBProgreso.setValue(music.getPosition());
@@ -236,7 +245,7 @@ public class JFPlay extends javax.swing.JFrame {
                             Logger.getLogger(JFPlay.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         break;
-                    }
+                    //}
                 }
             }
         };
@@ -251,12 +260,14 @@ public class JFPlay extends javax.swing.JFrame {
         music.close();
         music = new MusicPlayer(Main.lista.nextSong().getArchivo());
         music.play();
+        actualizar();
     }//GEN-LAST:event_jBSiguienteActionPerformed
 
     private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
         music.close();
         music = new MusicPlayer(Main.lista.previousSong().getArchivo());
         music.play();
+        actualizar();
     }//GEN-LAST:event_jBAtrasActionPerformed
 
     private void jTFCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCancionActionPerformed

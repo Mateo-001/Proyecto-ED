@@ -13,7 +13,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 public class JFLista extends javax.swing.JFrame {
 
-    ArrayList<Song> listaCanciones;
+    ArrayList<Song> listaCanciones = Main.lista.getList();
     public JFLista() {
         initComponents();
         

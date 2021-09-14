@@ -206,7 +206,7 @@ public class JFNuevaCancion extends javax.swing.JFrame {
             music = new MusicPlayer(Main.lista.head.song.getArchivo());
             JOptionPane.showMessageDialog(null, jCBBuscar.getSelectedItem().toString() + " agregada correctamente", "Insertar nueva canción", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Ocurrió un error al insertar la canción", "Insertar nueva canción", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al insertar la canción", "Insertar nueva canción", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBInsertarActionPerformed
 

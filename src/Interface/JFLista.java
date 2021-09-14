@@ -1,6 +1,7 @@
 
 package Interface;
 
+import Source.Main;
 import Source.Song;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +18,8 @@ public class JFLista extends javax.swing.JFrame {
         initComponents();
         
         AutoCompleteDecorator.decorate(jCBCanciones);
-        
+        cargarCanciones();
+        getTabla();
     }
     
     public void cargarCanciones(){
@@ -122,7 +124,9 @@ public class JFLista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        // TODO add your handling code here:
+        Main.lista.deleteSong(jCBCanciones.getSelectedIndex());
+        cargarCanciones();
+        getTabla();
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed

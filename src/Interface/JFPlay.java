@@ -88,6 +88,12 @@ public class JFPlay extends javax.swing.JFrame {
             }
         });
 
+        jTFCancion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFCancionActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Canción:");
 
         jLabel3.setText("Artista:");
@@ -231,6 +237,10 @@ public class JFPlay extends javax.swing.JFrame {
         music = new MusicPlayer(Main.lista.previousSong().getArchivo());
         music.play();
     }//GEN-LAST:event_jBAtrasActionPerformed
+
+    private void jTFCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCancionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCancionActionPerformed
 
     /**
      * @param args the command line arguments

@@ -57,6 +57,7 @@ public class JFLista extends javax.swing.JFrame {
         jTLista = new javax.swing.JTable();
         jCBCanciones = new javax.swing.JComboBox<>();
         jBEliminar = new javax.swing.JButton();
+        jBRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +81,13 @@ public class JFLista extends javax.swing.JFrame {
             }
         });
 
+        jBRegresar.setText("Regresar");
+        jBRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,6 +100,8 @@ public class JFLista extends javax.swing.JFrame {
                         .addComponent(jCBCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
                         .addComponent(jBEliminar)
+                        .addGap(45, 45, 45)
+                        .addComponent(jBRegresar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -101,7 +111,8 @@ public class JFLista extends javax.swing.JFrame {
                 .addContainerGap(83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBEliminar))
+                    .addComponent(jBEliminar)
+                    .addComponent(jBRegresar))
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -113,6 +124,10 @@ public class JFLista extends javax.swing.JFrame {
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jBRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +166,7 @@ public class JFLista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBRegresar;
     private javax.swing.JComboBox<String> jCBCanciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTLista;

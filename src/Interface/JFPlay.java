@@ -118,6 +118,11 @@ public class JFPlay extends javax.swing.JFrame {
         });
 
         jBEliminar.setText("Eliminar Canción");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,7 +223,7 @@ public class JFPlay extends javax.swing.JFrame {
                         music.close();
                         music = new MusicPlayer(Main.lista.nextSong().getArchivo());
                         music.play();
-                        //actualizar();
+                        actualizar();
                         
                         System.out.println("test");
                         break;
@@ -271,6 +276,11 @@ public class JFPlay extends javax.swing.JFrame {
     private void jTFCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCancionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFCancionActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        JFLista jFLista = new JFLista();
+        jFLista.setVisible(true);
+    }//GEN-LAST:event_jBEliminarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,5 +1,7 @@
 package Source;
 
+import java.util.ArrayList;
+
 public class ListaCanciones {
 
     public Nodo head;
@@ -71,6 +73,17 @@ public class ListaCanciones {
         }
         i++;
         return i;
+    }
+    
+    public ArrayList getList(){
+        Nodo recorre = head;
+        ArrayList<Song> songList = new ArrayList<>();
+        while(recorre.next != head){
+            songList.add(recorre.song);
+            recorre = recorre.next;
+        }
+        songList.add(recorre.song);
+        return songList;
     }
 
 }

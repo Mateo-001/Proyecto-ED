@@ -58,6 +58,10 @@ public class ListaCanciones {
         return pointer.song;
     }
     
+    public Song actualsong() {
+        return pointer.song;
+    }
+    
     public int listSize() {
         Nodo recorre = head;
         int i = 0;

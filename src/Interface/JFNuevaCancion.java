@@ -53,9 +53,7 @@ public class JFNuevaCancion extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel(col, 0);
         Object[] obj = new Object[6];
 
-        this.carpetaLista = new File(this.carpeta);
-
-        this.canciones = carpetaLista.list();
+        
         for (int i = 0; i < canciones.length; i++) {
             System.out.println(canciones[i]);
         }
@@ -194,6 +192,8 @@ public class JFNuevaCancion extends javax.swing.JFrame {
 
     private void jBDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDireccionActionPerformed
         carpeta = getCarpeta();
+        this.carpetaLista = new File(this.carpeta);
+        this.canciones = carpetaLista.list();
         getTabla();
         cargarCanciones();
         this.jTFDireccion.setText(carpeta);

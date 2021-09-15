@@ -64,6 +64,7 @@ public class JFLista extends javax.swing.JFrame {
         jBRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lista de Reproducción");
 
         jTLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,6 +124,7 @@ public class JFLista extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed

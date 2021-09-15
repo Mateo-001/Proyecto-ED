@@ -33,45 +33,49 @@ public class ListaCanciones {
 
     public void deleteSong(int index) {
         Nodo recorre = head;
-        if (index == 1) {
-            head.next.previous = head.previous;
-            head.previous.next = head.next;
-            head = head.next;
-        } else if (index == listSize()) {
-            head.previous.previous.next = head;
-            head.previous = head.previous.previous;
-        }else{
-            for(int i=1;i<index;i++){
-                recorre = recorre.next;
+        if (head != head.next) {
+            if (index == 1) {
+                head.next.previous = head.previous;
+                head.previous.next = head.next;
+                head = head.next;
+            } else if (index == listSize()) {
+                head.previous.previous.next = head;
+                head.previous = head.previous.previous;
+            } else {
+                for (int i = 1; i < index; i++) {
+                    recorre = recorre.next;
+                }
+                recorre.previous.next = recorre.next;
+                recorre.next.previous = recorre.previous;
             }
-            recorre.previous.next = recorre.next;
-            recorre.next.previous = recorre.previous;
+        }else{
+            head = null;
         }
         //pointer = head;
     }
-    
-    public Song nextSong(){
+
+    public Song nextSong() {
         //Nodo recorre = head.next;
-        if(head == head.next){
+        if (head == head.next) {
             pointer.next = pointer;
         }
         pointer = pointer.next;
         return pointer.song;
     }
-    
-    public Song previousSong(){
+
+    public Song previousSong() {
         //Nodo recorre = head.previous;
-        if(head == head.previous){
+        if (head == head.previous) {
             pointer.previous = pointer;
         }
         pointer = pointer.previous;
         return pointer.song;
     }
-    
+
     public Song actualsong() {
         return pointer.song;
     }
-    
+
     public int listSize() {
         Nodo recorre = head;
         int i = 0;
@@ -82,11 +86,11 @@ public class ListaCanciones {
         i++;
         return i;
     }
-    
-    public ArrayList getList(){
+
+    public ArrayList getList() {
         Nodo recorre = head;
         ArrayList<Song> songList = new ArrayList<>();
-        while(recorre.next != head){
+        while (recorre.next != head) {
             songList.add(recorre.song);
             recorre = recorre.next;
         }

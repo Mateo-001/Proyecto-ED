@@ -1,4 +1,3 @@
-
 package Interface;
 
 import Source.Main;
@@ -12,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,8 +23,9 @@ public class JFPlay extends javax.swing.JFrame {
     public static boolean pausa = true;
     Song song;
     public static MusicPlayer music;
+
     public JFPlay() {
-        
+
         initComponents();
         this.jTFAlbum.setEditable(false);
         this.jTFArtista.setEditable(false);
@@ -34,23 +35,23 @@ public class JFPlay extends javax.swing.JFrame {
         this.jTFArtista.setEnabled(false);
         this.jTFCancion.setEnabled(false);
         this.jTFGenero.setEnabled(false);
-        
+
         jBPlay.setEnabled(false);
         jBPausa.setEnabled(false);
         jBAtras.setEnabled(false);
         jBSiguiente.setEnabled(false);
         jBListaReproduccion.setEnabled(false);
     }
-    
-    public void actualizar(){
+
+    public void actualizar() {
         this.jTFCancion.setText(Main.lista.actualsong().getNombre());
         this.jTFArtista.setText(Main.lista.actualsong().getAutor());
         this.jTFAlbum.setText(Main.lista.actualsong().getAlbum());
         this.jTFGenero.setText(Main.lista.actualsong().getGenero());
         setImagen();
     }
-    
-        public void setImagen() {
+
+    public void setImagen() {
         BufferedImage img = null;
         try {
             img = (BufferedImage) Main.lista.actualsong().getImg();
@@ -58,7 +59,7 @@ public class JFPlay extends javax.swing.JFrame {
             e.printStackTrace();
         }
         Image dimg = img.getScaledInstance(jLAlbum.getWidth(), jLAlbum.getHeight(),
-        Image.SCALE_SMOOTH);
+                Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         jLAlbum.setIcon(imageIcon);
     }
@@ -262,20 +263,20 @@ public class JFPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
-        if(music == null){
+        if (music == null) {
             music = new MusicPlayer(Main.lista.actualsong().getArchivo());
         }
         music.play();
         actualizar();
         new Thread() {
             public void run() {
-                while(true){
-                    if(music.complete()){
+                while (true) {
+                    if (music.complete() && Main.lista.head!=null) {
                         music.close();
                         music = new MusicPlayer(Main.lista.nextSong().getArchivo());
                         music.play();
                         actualizar();
-                        
+
                         System.out.println("test");
                         break;
                     }
@@ -287,20 +288,20 @@ public class JFPlay extends javax.swing.JFrame {
         } catch (UnsupportedAudioFileException | IOException ex) {
             Logger.getLogger(JFPlay.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Thread thread1 = new Thread(){
+
+        Thread thread1 = new Thread() {
             public void run() {
-                while(true){
+                while (true) {
                     //if(music.complete()){
-                        try {
-                            jPBProgreso.setMaximum(music.getDurationWithMp3Spi(Main.lista.actualsong().getArchivo()));
-                            jLTotal.setText(music.getTotalTime(Main.lista.actualsong().getArchivo()));
-                            jPBProgreso.setValue(music.getPosition());
-                            jLActual.setText(music.getActualTime());
-                        } catch (UnsupportedAudioFileException | IOException ex) {
-                            Logger.getLogger(JFPlay.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        //break;
+                    try {
+                        jPBProgreso.setMaximum(music.getDurationWithMp3Spi(Main.lista.actualsong().getArchivo()));
+                        jLTotal.setText(music.getTotalTime(Main.lista.actualsong().getArchivo()));
+                        jPBProgreso.setValue(music.getPosition());
+                        jLActual.setText(music.getActualTime());
+                    } catch (UnsupportedAudioFileException | IOException ex) {
+                        Logger.getLogger(JFPlay.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    //break;
                     //}
                 }
             }
@@ -317,21 +318,29 @@ public class JFPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_jBPausaActionPerformed
 
     private void jBSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSiguienteActionPerformed
-        music.close();
-        music = new MusicPlayer(Main.lista.nextSong().getArchivo());
-        music.play();
-        actualizar();
-        jBPlay.setEnabled(false);
-        jBPausa.setEnabled(true);
+        if (Main.lista.head != null) {
+            music.close();
+            music = new MusicPlayer(Main.lista.nextSong().getArchivo());
+            music.play();
+            actualizar();
+            jBPlay.setEnabled(false);
+            jBPausa.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "No existen canciones en la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jBSiguienteActionPerformed
 
     private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
-        music.close();
-        music = new MusicPlayer(Main.lista.previousSong().getArchivo());
-        music.play();
-        actualizar();
-        jBPlay.setEnabled(false);
-        jBPausa.setEnabled(true);
+        if (Main.lista.head != null) {
+            music.close();
+            music = new MusicPlayer(Main.lista.previousSong().getArchivo());
+            music.play();
+            actualizar();
+            jBPlay.setEnabled(false);
+            jBPausa.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "No existen canciones en la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jBAtrasActionPerformed
 
     private void jTFCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCancionActionPerformed
@@ -377,7 +386,6 @@ public class JFPlay extends javax.swing.JFrame {
             }
         });
     }
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

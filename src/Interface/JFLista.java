@@ -1,4 +1,3 @@
-
 package Interface;
 
 import Source.Main;
@@ -14,28 +13,29 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public class JFLista extends javax.swing.JFrame {
 
     ArrayList<Song> listaCanciones;
+
     public JFLista() {
         initComponents();
-        
+
         AutoCompleteDecorator.decorate(jCBCanciones);
         listaCanciones = Main.lista.getList();
         cargarCanciones();
         getTabla();
     }
-    
-    public void cargarCanciones(){
+
+    public void cargarCanciones() {
         jCBCanciones.removeAllItems();
-        for (Song aux: listaCanciones){
+        for (Song aux : listaCanciones) {
             jCBCanciones.addItem(aux.getNombre());
         }
     }
-    
-    public void getTabla(){
+
+    public void getTabla() {
         String col[] = {"Nº", "Nombre", "Autor", "Álbum", "Género", "Año"};
         DefaultTableModel modelo = new DefaultTableModel(col, 0);
         Object[] obj = new Object[6];
-        int i=0;
-        for (Song aux: listaCanciones) {
+        int i = 0;
+        for (Song aux : listaCanciones) {
             obj[0] = i + 1;
             obj[1] = aux.getNombre().replace(".mp3", "");
             obj[2] = aux.getAutor();
@@ -47,7 +47,7 @@ public class JFLista extends javax.swing.JFrame {
         }
         this.jTLista.setModel(modelo);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,10 +126,18 @@ public class JFLista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        Main.lista.deleteSong(jCBCanciones.getSelectedIndex()+1);
-        listaCanciones = Main.lista.getList();
-        cargarCanciones();
-        getTabla();
+        Main.lista.deleteSong(jCBCanciones.getSelectedIndex() + 1);
+        if (Main.lista.head != null) {
+            listaCanciones = Main.lista.getList();
+            cargarCanciones();
+            getTabla();
+        }else{
+            this.jCBCanciones.removeAllItems();
+            String col[] = {"Nº", "Nombre", "Autor", "Álbum", "Género", "Año"};
+            DefaultTableModel modelo = new DefaultTableModel(col, 0);
+            this.jTLista.setModel(modelo);
+        }
+
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed

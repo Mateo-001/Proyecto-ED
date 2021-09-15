@@ -47,17 +47,23 @@ public class ListaCanciones {
             recorre.previous.next = recorre.next;
             recorre.next.previous = recorre.previous;
         }
-        pointer = head;
+        //pointer = head;
     }
     
     public Song nextSong(){
         //Nodo recorre = head.next;
+        if(head == head.next){
+            pointer.next = pointer;
+        }
         pointer = pointer.next;
         return pointer.song;
     }
     
     public Song previousSong(){
         //Nodo recorre = head.previous;
+        if(head == head.previous){
+            pointer.previous = pointer;
+        }
         pointer = pointer.previous;
         return pointer.song;
     }

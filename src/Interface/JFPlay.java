@@ -276,7 +276,6 @@ public class JFPlay extends javax.swing.JFrame {
                         music = new MusicPlayer(Main.lista.nextSong().getArchivo());
                         music.play();
                         actualizar();
-
                         System.out.println("test");
                         break;
                     }

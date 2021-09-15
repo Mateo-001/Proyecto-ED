@@ -318,6 +318,8 @@ public class JFPlay extends javax.swing.JFrame {
         music = new MusicPlayer(Main.lista.nextSong().getArchivo());
         music.play();
         actualizar();
+        jBPlay.setEnabled(false);
+        jBPausa.setEnabled(true);
     }//GEN-LAST:event_jBSiguienteActionPerformed
 
     private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
@@ -325,6 +327,8 @@ public class JFPlay extends javax.swing.JFrame {
         music = new MusicPlayer(Main.lista.previousSong().getArchivo());
         music.play();
         actualizar();
+        jBPlay.setEnabled(false);
+        jBPausa.setEnabled(true);
     }//GEN-LAST:event_jBAtrasActionPerformed
 
     private void jTFCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCancionActionPerformed

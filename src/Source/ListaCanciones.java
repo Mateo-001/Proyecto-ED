@@ -28,6 +28,7 @@ public class ListaCanciones {
             head.previous = nuevo;
             nuevo.previous = ultimo;
         }
+        pointer = head;
     }
 
     public void deleteSong(int index) {

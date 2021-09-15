@@ -32,6 +32,7 @@ public class MusicPlayer {
         } catch (JavaLayerException | FileNotFoundException e) {
             e.printStackTrace();
         }
+        
     }
 
     public void play() {
@@ -77,7 +78,7 @@ public class MusicPlayer {
             //int sec = (mili / 1000) % 60;
             //int min = (mili / 1000) / 60;
             //System.out.println("time = " + min + ":" + sec);
-            System.out.println("time = " + mili);
+            //System.out.println("time = " + mili);
             return mili;
         } else {
             throw new UnsupportedAudioFileException();

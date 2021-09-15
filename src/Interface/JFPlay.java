@@ -262,6 +262,9 @@ public class JFPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
+        if(music == null){
+            music = new MusicPlayer(Main.lista.actualsong().getArchivo());
+        }
         music.play();
         actualizar();
         new Thread() {
@@ -280,7 +283,7 @@ public class JFPlay extends javax.swing.JFrame {
             }
         }.start();
         try {
-            music.getDurationWithMp3Spi(Main.lista.nextSong().getArchivo());
+            music.getDurationWithMp3Spi(Main.lista.actualsong().getArchivo());
         } catch (UnsupportedAudioFileException | IOException ex) {
             Logger.getLogger(JFPlay.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -23,7 +23,6 @@ import org.tritonus.share.sampled.file.TAudioFileFormat;
 public class MusicPlayer {
 
     Player player;
-    
 
     public MusicPlayer(File file) {
         try {
@@ -85,6 +84,24 @@ public class MusicPlayer {
         }
     }
 
+    public String getTotalTime(File file) throws UnsupportedAudioFileException, IOException {
+
+        AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(file);
+        if (fileFormat instanceof TAudioFileFormat) {
+            Map<?, ?> properties = ((TAudioFileFormat) fileFormat).properties();
+            String key = "duration";
+            Long microseconds = (Long) properties.get(key);
+            int mili = (int) (microseconds / 1000);
+            int sec = (mili / 1000) % 60;
+            int min = (mili / 1000) / 60;
+            String tiempo = min + ":" + sec;
+            //System.out.println("time = " + mili);
+            return tiempo;
+        } else {
+            throw new UnsupportedAudioFileException();
+        }
+    }
+
     public void close() {
         player.close();
     }
@@ -92,8 +109,17 @@ public class MusicPlayer {
     public boolean complete() {
         return player.isComplete();
     }
-    
-    public int getPosition(){
+
+    public int getPosition() {
         return player.getPosition();
+    }
+
+    public String getActualTime() {
+        String tiempo;
+        long mili = player.getPosition();  // obtained from StopWatch
+        long min = (mili / 1000) / 60;
+        int sec = (int) ((mili / 1000) % 60);
+        tiempo = min + ":" + sec;
+        return tiempo;
     }
 }

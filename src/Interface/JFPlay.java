@@ -34,7 +34,11 @@ public class JFPlay extends javax.swing.JFrame {
         this.jTFArtista.setEnabled(false);
         this.jTFCancion.setEnabled(false);
         this.jTFGenero.setEnabled(false);
-    
+        
+        jBPlay.setEnabled(false);
+        jBPausa.setEnabled(false);
+        jBAtras.setEnabled(false);
+        jBSiguiente.setEnabled(false);
     }
     
     public void actualizar(){
@@ -252,6 +256,9 @@ public class JFPlay extends javax.swing.JFrame {
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         JFNuevaCancion jFNueva = new JFNuevaCancion();
         jFNueva.setVisible(true);
+        jBPlay.setEnabled(true);
+        jBAtras.setEnabled(true);
+        jBSiguiente.setEnabled(true);
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
@@ -296,10 +303,14 @@ public class JFPlay extends javax.swing.JFrame {
             }
         };
         thread1.start();
+        jBPlay.setEnabled(false);
+        jBPausa.setEnabled(true);
     }//GEN-LAST:event_jBPlayActionPerformed
 
     private void jBPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPausaActionPerformed
         music.pause();
+        jBPausa.setEnabled(false);
+        jBPlay.setEnabled(true);
     }//GEN-LAST:event_jBPausaActionPerformed
 
     private void jBSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSiguienteActionPerformed

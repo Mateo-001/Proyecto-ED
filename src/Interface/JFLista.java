@@ -13,16 +13,18 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 public class JFLista extends javax.swing.JFrame {
 
-    ArrayList<Song> listaCanciones = Main.lista.getList();
+    ArrayList<Song> listaCanciones;
     public JFLista() {
         initComponents();
         
         AutoCompleteDecorator.decorate(jCBCanciones);
+        listaCanciones = Main.lista.getList();
         cargarCanciones();
         getTabla();
     }
     
     public void cargarCanciones(){
+        jCBCanciones.removeAllItems();
         for (Song aux: listaCanciones){
             jCBCanciones.addItem(aux.getNombre());
         }
@@ -125,6 +127,7 @@ public class JFLista extends javax.swing.JFrame {
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         Main.lista.deleteSong(jCBCanciones.getSelectedIndex());
+        listaCanciones = Main.lista.getList();
         cargarCanciones();
         getTabla();
     }//GEN-LAST:event_jBEliminarActionPerformed

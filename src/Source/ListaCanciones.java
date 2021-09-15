@@ -46,6 +46,7 @@ public class ListaCanciones {
             recorre.previous.next = recorre.next;
             recorre.next.previous = recorre.previous;
         }
+        pointer = head;
     }
     
     public Song nextSong(){

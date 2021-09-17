@@ -100,7 +100,10 @@ public class Player implements BasicPlayerListener{
     @Override
     public void progress(int i, long l, byte[] bytes, Map map) {
         JFPlay.updateProgressBar(l/1000, Main.lista.actualsong().getDuracion());
-        if(l/1000 == Main.lista.actualsong().getDuracion()){
+        System.out.println(Main.lista.actualsong().getDuracion());
+        System.out.println(l/1000);
+        if((l/1000)+1000 >= Main.lista.actualsong().getDuracion()){
+            System.out.println("Si");
             change =  true;
         }
     }

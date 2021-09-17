@@ -83,7 +83,7 @@ public class JFPlay extends javax.swing.JFrame {
         jLTotal.setText(formatTime(total));
         jLActual.setText(formatTime(actual));
     }
-
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -372,7 +372,7 @@ public class JFPlay extends javax.swing.JFrame {
     private javax.swing.JButton jBListaReproduccion;
     private javax.swing.JButton jBPausa;
     private javax.swing.JButton jBPlay;
-    private javax.swing.JButton jBSiguiente;
+    public static javax.swing.JButton jBSiguiente;
     public static javax.swing.JLabel jLActual;
     public static javax.swing.JLabel jLAlbum;
     public static javax.swing.JLabel jLTotal;

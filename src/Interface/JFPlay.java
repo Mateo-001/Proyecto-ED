@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -69,11 +70,13 @@ public class JFPlay extends javax.swing.JFrame {
     }
 
     public static String formatTime(long l) {
+        String format = "00";
+        DecimalFormat objDF = new DecimalFormat (format);
         String tiempo;
         long mili = l;  // obtained from StopWatch
         long min = (mili / 1000) / 60;
         int sec = (int) ((mili / 1000) % 60);
-        tiempo = min + ":" + sec;
+        tiempo = objDF.format(min) + ":" + objDF.format(sec);
         return tiempo;
     }
 
@@ -117,6 +120,7 @@ public class JFPlay extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reproductor de Música");
+        setResizable(false);
 
         jBAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

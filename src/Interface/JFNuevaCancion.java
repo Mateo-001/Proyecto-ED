@@ -98,6 +98,7 @@ public class JFNuevaCancion extends javax.swing.JFrame {
         jBRegresar = new javax.swing.JButton();
 
         setTitle("Nueva canción");
+        setResizable(false);
 
         jTCanciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

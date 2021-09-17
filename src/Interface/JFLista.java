@@ -64,6 +64,7 @@ public class JFLista extends javax.swing.JFrame {
         jBRegresar = new javax.swing.JButton();
 
         setTitle("Lista de Reproducción");
+        setResizable(false);
 
         jTLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

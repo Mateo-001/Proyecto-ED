@@ -2,6 +2,7 @@ package Interface;
 
 import Source.Main;
 import Source.MusicPlayer;
+import Source.Player;
 import Source.Song;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -24,6 +25,9 @@ public class JFPlay extends javax.swing.JFrame {
     Song song;
     public static MusicPlayer music;
 
+    Player player = new Player();
+    boolean flag = false;
+
     public JFPlay() {
 
         initComponents();
@@ -43,15 +47,15 @@ public class JFPlay extends javax.swing.JFrame {
         jBListaReproduccion.setEnabled(false);
     }
 
-    public void actualizar() {
-        this.jTFCancion.setText(Main.lista.actualsong().getNombre());
-        this.jTFArtista.setText(Main.lista.actualsong().getAutor());
-        this.jTFAlbum.setText(Main.lista.actualsong().getAlbum());
-        this.jTFGenero.setText(Main.lista.actualsong().getGenero());
+    public static void actualizar() {
+        jTFCancion.setText(Main.lista.actualsong().getNombre());
+        jTFArtista.setText(Main.lista.actualsong().getAutor());
+        jTFAlbum.setText(Main.lista.actualsong().getAlbum());
+        jTFGenero.setText(Main.lista.actualsong().getGenero());
         setImagen();
     }
 
-    public void setImagen() {
+    public static void setImagen() {
         BufferedImage img = null;
         try {
             img = (BufferedImage) Main.lista.actualsong().getImg();
@@ -62,6 +66,22 @@ public class JFPlay extends javax.swing.JFrame {
                 Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         jLAlbum.setIcon(imageIcon);
+    }
+
+    public static String formatTime(long l) {
+        String tiempo;
+        long mili = l;  // obtained from StopWatch
+        long min = (mili / 1000) / 60;
+        int sec = (int) ((mili / 1000) % 60);
+        tiempo = min + ":" + sec;
+        return tiempo;
+    }
+
+    public static void updateProgressBar(long actual, long total) {
+        jPBProgreso.setMaximum((int) total);
+        jPBProgreso.setValue((int) actual);
+        jLTotal.setText(formatTime(total));
+        jLActual.setText(formatTime(actual));
     }
 
     /**
@@ -263,65 +283,27 @@ public class JFPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
-        if (music == null) {
-            music = new MusicPlayer(Main.lista.actualsong().getArchivo());
-        }
-        music.play();
-        actualizar();
-        new Thread() {
-            public void run() {
-                while (true) {
-                    if (music.complete() && Main.lista.head!=null) {
-                        music.close();
-                        music = new MusicPlayer(Main.lista.nextSong().getArchivo());
-                        music.play();
-                        actualizar();
-                        System.out.println("test");
-                        break;
-                    }
-                }
-            }
-        }.start();
-        try {
-            music.getDurationWithMp3Spi(Main.lista.actualsong().getArchivo());
-        } catch (UnsupportedAudioFileException | IOException ex) {
-            Logger.getLogger(JFPlay.class.getName()).log(Level.SEVERE, null, ex);
+        if (flag == false) {
+            player.addFile(Main.lista.head.song);
+            player.play();
+            flag = true;
+        } else {
+            player.resume();
         }
 
-        Thread thread1 = new Thread() {
-            public void run() {
-                while (true) {
-                    //if(music.complete()){
-                    try {
-                        jPBProgreso.setMaximum(music.getDurationWithMp3Spi(Main.lista.actualsong().getArchivo()));
-                        jLTotal.setText(music.getTotalTime(Main.lista.actualsong().getArchivo()));
-                        jPBProgreso.setValue(music.getPosition());
-                        jLActual.setText(music.getActualTime());
-                    } catch (UnsupportedAudioFileException | IOException ex) {
-                        Logger.getLogger(JFPlay.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    //break;
-                    //}
-                }
-            }
-        };
-        thread1.start();
         jBPlay.setEnabled(false);
         jBPausa.setEnabled(true);
     }//GEN-LAST:event_jBPlayActionPerformed
 
     private void jBPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPausaActionPerformed
-        music.pause();
+        player.pause();
         jBPausa.setEnabled(false);
         jBPlay.setEnabled(true);
     }//GEN-LAST:event_jBPausaActionPerformed
 
     private void jBSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSiguienteActionPerformed
         if (Main.lista.head != null) {
-            music.close();
-            music = new MusicPlayer(Main.lista.nextSong().getArchivo());
-            music.play();
-            actualizar();
+            player.nextSong();
             jBPlay.setEnabled(false);
             jBPausa.setEnabled(true);
         } else {
@@ -331,10 +313,7 @@ public class JFPlay extends javax.swing.JFrame {
 
     private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
         if (Main.lista.head != null) {
-            music.close();
-            music = new MusicPlayer(Main.lista.previousSong().getArchivo());
-            music.play();
-            actualizar();
+            player.previousSong();
             jBPlay.setEnabled(false);
             jBPausa.setEnabled(true);
         } else {
@@ -394,18 +373,18 @@ public class JFPlay extends javax.swing.JFrame {
     private javax.swing.JButton jBPausa;
     private javax.swing.JButton jBPlay;
     private javax.swing.JButton jBSiguiente;
-    private javax.swing.JLabel jLActual;
-    private javax.swing.JLabel jLAlbum;
-    private javax.swing.JLabel jLTotal;
+    public static javax.swing.JLabel jLActual;
+    public static javax.swing.JLabel jLAlbum;
+    public static javax.swing.JLabel jLTotal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JProgressBar jPBProgreso;
-    private javax.swing.JTextField jTFAlbum;
-    private javax.swing.JTextField jTFArtista;
-    private javax.swing.JTextField jTFCancion;
-    private javax.swing.JTextField jTFGenero;
+    public static javax.swing.JProgressBar jPBProgreso;
+    public static javax.swing.JTextField jTFAlbum;
+    public static javax.swing.JTextField jTFArtista;
+    public static javax.swing.JTextField jTFCancion;
+    public static javax.swing.JTextField jTFGenero;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,6 +26,7 @@ public class Song {
     String album;
     String genero;
     String anio;
+    long duracion;
     
     Image img;
 
@@ -45,6 +46,7 @@ public class Song {
         this.album = song.getId3v2Tag().getAlbum();
         this.genero = song.getId3v2Tag().getGenreDescription();
         this.anio = song.getId3v2Tag().getYear();
+        this.duracion = song.getLengthInMilliseconds();
         byte[] imageData = song.getId3v2Tag().getAlbumImage();
         try {
             img = ImageIO.read(new ByteArrayInputStream(imageData));
@@ -84,6 +86,9 @@ public class Song {
     public Image getImg() {
         return img;
     }
-    
+
+    public long getDuracion() {
+        return duracion;
+    }
     
 }

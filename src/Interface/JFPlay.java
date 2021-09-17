@@ -27,6 +27,7 @@ public class JFPlay extends javax.swing.JFrame {
 
     Player player = new Player();
     boolean flag = false;
+    JFNuevaCancion jFNueva = new JFNuevaCancion();
 
     public JFPlay() {
 
@@ -62,8 +63,7 @@ public class JFPlay extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Image dimg = img.getScaledInstance(jLAlbum.getWidth(), jLAlbum.getHeight(),
-                Image.SCALE_SMOOTH);
+        Image dimg = img.getScaledInstance(jLAlbum.getWidth(), jLAlbum.getHeight(),Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         jLAlbum.setIcon(imageIcon);
     }
@@ -83,7 +83,7 @@ public class JFPlay extends javax.swing.JFrame {
         jLTotal.setText(formatTime(total));
         jLActual.setText(formatTime(actual));
     }
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,6 +93,7 @@ public class JFPlay extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSlider1 = new javax.swing.JSlider();
         jBAtras = new javax.swing.JButton();
         jBSiguiente = new javax.swing.JButton();
         jBPlay = new javax.swing.JButton();
@@ -112,6 +113,7 @@ public class JFPlay extends javax.swing.JFrame {
         jLAlbum = new javax.swing.JLabel();
         jLTotal = new javax.swing.JLabel();
         jLActual = new javax.swing.JLabel();
+        jSVolume = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reproductor de Música");
@@ -168,6 +170,18 @@ public class JFPlay extends javax.swing.JFrame {
             }
         });
 
+        jSVolume.setValue(75);
+        jSVolume.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSVolumeStateChanged(evt);
+            }
+        });
+        jSVolume.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jSVolumeMouseMoved(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,13 +204,6 @@ public class JFPlay extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(86, 86, 86))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLActual, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPBProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -217,7 +224,16 @@ public class JFPlay extends javax.swing.JFrame {
                                     .addComponent(jTFArtista)
                                     .addComponent(jTFAlbum)
                                     .addComponent(jTFGenero))))
-                        .addGap(26, 26, 26))))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLActual, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSVolume, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPBProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +257,7 @@ public class JFPlay extends javax.swing.JFrame {
                             .addComponent(jTFGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)))
                     .addComponent(jLAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 21, Short.MAX_VALUE)
+                .addGap(9, 15, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(0, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,16 +273,18 @@ public class JFPlay extends javax.swing.JFrame {
                                 .addComponent(jBPausa, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jBPlay))
                             .addComponent(jBAtras))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLActual)
-                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPBProgreso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLTotal, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(39, 39, 39))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLActual)
+                                .addContainerGap())))))
         );
 
         pack();
@@ -274,7 +292,6 @@ public class JFPlay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        JFNuevaCancion jFNueva = new JFNuevaCancion();
         jFNueva.setVisible(true);
         jBPlay.setEnabled(true);
         jBAtras.setEnabled(true);
@@ -283,16 +300,19 @@ public class JFPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
-        if (flag == false) {
-            player.addFile(Main.lista.head.song);
-            player.play();
-            flag = true;
-        } else {
-            player.resume();
+        try {
+            if (flag == false) {
+                player.addFile(Main.lista.head.song);
+                player.play();
+                flag = true;
+            } else {
+                player.resume();
+            }
+            jBPlay.setEnabled(false);
+            jBPausa.setEnabled(true);
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "No existen canciones en la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-
-        jBPlay.setEnabled(false);
-        jBPausa.setEnabled(true);
     }//GEN-LAST:event_jBPlayActionPerformed
 
     private void jBPausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPausaActionPerformed
@@ -302,7 +322,7 @@ public class JFPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_jBPausaActionPerformed
 
     private void jBSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSiguienteActionPerformed
-        if (Main.lista.head != null) {
+        if (!Main.lista.head.isEmpty()) {
             player.nextSong();
             jBPlay.setEnabled(false);
             jBPausa.setEnabled(true);
@@ -312,7 +332,7 @@ public class JFPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSiguienteActionPerformed
 
     private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
-        if (Main.lista.head != null) {
+        if (!Main.lista.head.isEmpty()) {
             player.previousSong();
             jBPlay.setEnabled(false);
             jBPausa.setEnabled(true);
@@ -326,9 +346,21 @@ public class JFPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFCancionActionPerformed
 
     private void jBListaReproduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBListaReproduccionActionPerformed
-        JFLista jFLista = new JFLista();
-        jFLista.setVisible(true);
+        try{
+            JFLista jFLista = new JFLista();
+            jFLista.setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No existen canciones en la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jBListaReproduccionActionPerformed
+
+    private void jSVolumeMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSVolumeMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSVolumeMouseMoved
+
+    private void jSVolumeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSVolumeStateChanged
+        player.setVolume((double) jSVolume.getValue() / 100);
+    }//GEN-LAST:event_jSVolumeStateChanged
 
     /**
      * @param args the command line arguments
@@ -382,6 +414,8 @@ public class JFPlay extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     public static javax.swing.JProgressBar jPBProgreso;
+    private javax.swing.JSlider jSVolume;
+    private javax.swing.JSlider jSlider1;
     public static javax.swing.JTextField jTFAlbum;
     public static javax.swing.JTextField jTFArtista;
     public static javax.swing.JTextField jTFCancion;

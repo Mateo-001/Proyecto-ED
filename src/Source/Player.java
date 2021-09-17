@@ -26,6 +26,7 @@ public class Player implements BasicPlayerListener{
     BasicController control = (BasicController) player;
     
     boolean change = false;
+    long time = 0;
 
     public Player() {
         player.addBasicPlayerListener(this);
@@ -34,6 +35,7 @@ public class Player implements BasicPlayerListener{
     public void addFile(Song song){
         try {
             control.open(song.getArchivo());
+            time = song.getDuracion();
         } catch (BasicPlayerException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,7 +68,8 @@ public class Player implements BasicPlayerListener{
     public void nextSong(){
         try {
             control.stop();
-            control.open(Main.lista.nextSong().getArchivo());
+            addFile(Main.lista.nextSong());
+            //control.open(Main.lista.nextSong().getArchivo());
             control.play();
         } catch (BasicPlayerException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,8 +79,17 @@ public class Player implements BasicPlayerListener{
     public void previousSong(){
         try {
             control.stop();
-            control.open(Main.lista.previousSong().getArchivo());
+            addFile(Main.lista.previousSong());
+            //control.open(Main.lista.previousSong().getArchivo());
             control.play();
+        } catch (BasicPlayerException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setVolume(double volume){
+        try {
+            control.setGain(volume);
         } catch (BasicPlayerException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,10 +111,10 @@ public class Player implements BasicPlayerListener{
 
     @Override
     public void progress(int i, long l, byte[] bytes, Map map) {
-        JFPlay.updateProgressBar(l/1000, Main.lista.actualsong().getDuracion());
-        System.out.println(Main.lista.actualsong().getDuracion());
-        System.out.println(l/1000);
-        if((l/1000)+1000 >= Main.lista.actualsong().getDuracion()){
+        JFPlay.updateProgressBar(l/1000, time);
+        //System.out.println(Main.lista.actualsong().getDuracion());
+        //System.out.println(l/1000);
+        if((l/1000)+1000 >= time){
             System.out.println("Si");
             change =  true;
         }

@@ -127,7 +127,7 @@ public class JFLista extends javax.swing.JFrame {
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         Main.lista.deleteSong(jCBCanciones.getSelectedIndex() + 1);
-        if (Main.lista.head != null) {
+        if (!Main.lista.head.isEmpty()) {
             listaCanciones = Main.lista.getList();
             cargarCanciones();
             getTabla();

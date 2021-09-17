@@ -97,7 +97,6 @@ public class JFNuevaCancion extends javax.swing.JFrame {
         jTFDireccion = new javax.swing.JTextField();
         jBRegresar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nueva canción");
 
         jTCanciones.setModel(new javax.swing.table.DefaultTableModel(

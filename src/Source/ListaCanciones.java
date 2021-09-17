@@ -49,7 +49,10 @@ public class ListaCanciones {
                 recorre.next.previous = recorre.previous;
             }
         }else{
-            head = null;
+            head = new Nodo();
+            head.next = head;
+            head.previous = head;
+            pointer = head;
         }
         //pointer = head;
     }

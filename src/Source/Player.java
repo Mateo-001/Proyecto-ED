@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
 import javazoom.jlgui.basicplayer.BasicController;
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerEvent;
@@ -38,6 +39,8 @@ public class Player implements BasicPlayerListener{
             time = song.getDuracion();
         } catch (BasicPlayerException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e){
+             JOptionPane.showMessageDialog(null, "No existen más canciones en la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }
     

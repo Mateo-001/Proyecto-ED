@@ -326,6 +326,7 @@ public class JFPlay extends javax.swing.JFrame {
             player.nextSong();
             jBPlay.setEnabled(false);
             jBPausa.setEnabled(true);
+            player.setVolume((double) jSVolume.getValue() / 100);
         } else {
             JOptionPane.showMessageDialog(null, "No existen canciones en la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
@@ -336,6 +337,7 @@ public class JFPlay extends javax.swing.JFrame {
             player.previousSong();
             jBPlay.setEnabled(false);
             jBPausa.setEnabled(true);
+            player.setVolume((double) jSVolume.getValue() / 100);
         } else {
             JOptionPane.showMessageDialog(null, "No existen canciones en la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
